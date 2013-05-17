@@ -7,6 +7,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        JesterMainWindow.cpp
+        JesterMainWindow.cpp\
+        BiomTableModel.cpp
 
-HEADERS  += JesterMainWindow.h
+HEADERS  += JesterMainWindow.h\
+         BiomTableModel.h

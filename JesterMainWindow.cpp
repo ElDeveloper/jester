@@ -5,5 +5,4 @@ JesterMainWindow::JesterMainWindow(QWidget* parent)
 }
 
 JesterMainWindow::~JesterMainWindow() {
-
 }
