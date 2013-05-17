@@ -3,6 +3,8 @@
 class QModelIndex;
 class QVariant;
 
+// Used the following as a starting point for this class:
+//   http://stackoverflow.com/a/11907059
 class BiomTableModel : public QAbstractTableModel {
   public:
     BiomTableModel(int numRows, int numColumns, double* data);
