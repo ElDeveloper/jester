@@ -1,7 +1,7 @@
 jester
 ======
 
-A tool to view and edit biom-format files (.biom).
+A tool to view and edit [biom-format](http://biom-format.org/) files (.biom).
 
 Jester is currently under development.
 
