@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QItemDelegate>
 #include <QTableView>
 
 #include "BiomTableModel.h"
@@ -13,14 +14,18 @@ int main(int argc, char *argv[]) {
     double matrix[numRows][numColumns];
     for (int i = 0; i < numRows; ++i)
       for (int j = 0; j < numColumns; ++j)
-        matrix[i][j] = i + j;
+        matrix[i][j] = (i + 1) * (j + 1);
 
     // Create a model which adapts the data (the matrix) to the view.
     BiomTableModel model(numRows, numColumns, (double*)matrix);
 
-    JesterMainWindow window;
     QTableView* view = new QTableView;
     view->setModel(&model);
+
+    QItemDelegate delegate;
+    view->setItemDelegate(&delegate);
+
+    JesterMainWindow window;
     window.setCentralWidget(view);
     window.show();
 
