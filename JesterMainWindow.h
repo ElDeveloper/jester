@@ -7,7 +7,7 @@ class JesterMainWindow : public QMainWindow {
     Q_OBJECT
 
   public:
-    JesterMainWindow(QWidget* parent=0);
+    JesterMainWindow(QWidget* parent = 0);
     ~JesterMainWindow();
 };
 

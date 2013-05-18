@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {
     QTableView* view = new QTableView;
     view->setModel(&model);
 
-    QItemDelegate delegate;
-    view->setItemDelegate(&delegate);
+    //QItemDelegate delegate;
+    //view->setItemDelegate(&delegate);
 
     JesterMainWindow window;
     window.setCentralWidget(view);
