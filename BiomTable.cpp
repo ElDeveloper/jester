@@ -16,6 +16,7 @@ BiomTable::BiomTable(const QString& fileName) {
   std::ifstream inFile(ba.data());
 
   if (!inFile.is_open()) {
+    // TODO fix me
     std::cout << "bleh\n";
     return;
   }
@@ -24,6 +25,7 @@ BiomTable::BiomTable(const QString& fileName) {
   bool successfulParse = reader.parse(inFile, *jsonRoot);
 
   if (!successfulParse) {
+    // TODO fix me
     std::cout << "blah\n";
     return;
   }
