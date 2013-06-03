@@ -8,7 +8,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         JesterMainWindow.cpp\
-        BiomTableModel.cpp
+        BiomTableModel.cpp\
+        BiomTable.cpp\
+        jsoncpp.cpp
 
 HEADERS  += JesterMainWindow.h\
-         BiomTableModel.h
+         BiomTableModel.h\
+         BiomTable.h\
+         json/json.h
