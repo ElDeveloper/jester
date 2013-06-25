@@ -3,21 +3,23 @@
 #include <QModelIndex>
 #include <QVariant>
 
-BiomTableModel::BiomTableModel(int numRows, int numColumns, double* data)
-  : numRows(numRows),
-    numColumns(numColumns),
-    biomTable(data) {
+#include "BiomTable.h"
+
+BiomTableModel::BiomTableModel(BiomTable* table)
+  : table(table) {
 }
 
 BiomTableModel::~BiomTableModel() {
+  delete table;
+  table = NULL;
 }
 
 int BiomTableModel::rowCount(const QModelIndex& parent) const {
-  return numRows;
+  return table->observationCount();
 }
 
 int BiomTableModel::columnCount(const QModelIndex& parent) const {
-  return numColumns;
+  return table->sampleCount();
 }
 
 Qt::ItemFlags BiomTableModel::flags(const QModelIndex& index) const {
@@ -42,20 +44,16 @@ QVariant BiomTableModel::data(const QModelIndex& index, int role) const {
   if (!index.isValid() || (role != Qt::DisplayRole && role != Qt::EditRole))
     return QVariant();
 
-  return biomTable[convertIndex(index)];
+  return table->data(index.row(), index.column());
 }
 
 bool BiomTableModel::setData(const QModelIndex& index, const QVariant& value,
                              int role) {
   if (index.isValid() && role == Qt::EditRole) {
-    biomTable[convertIndex(index)] = value.toDouble();
+    table->setData(index.row(), index.column(), value.toDouble());
     emit dataChanged(index, index);
     return true;
   }
 
   return false;
-}
-
-int BiomTableModel::convertIndex(const QModelIndex& index) const {
-  return index.row() * numColumns + index.column();
 }

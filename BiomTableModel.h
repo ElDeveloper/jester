@@ -1,5 +1,6 @@
 #include <QAbstractTableModel>
 
+class BiomTable;
 class QModelIndex;
 class QVariant;
 
@@ -9,7 +10,7 @@ class BiomTableModel : public QAbstractTableModel {
     Q_OBJECT
 
   public:
-    BiomTableModel(int numRows, int numColumns, double* data);
+    BiomTableModel(BiomTable* table);
     virtual ~BiomTableModel();
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
@@ -24,10 +25,5 @@ class BiomTableModel : public QAbstractTableModel {
                  int role = Qt::EditRole);
 
   private:
-    int convertIndex(const QModelIndex& index) const;
-
-  private:
-    int numRows;
-    int numColumns;
-    double* biomTable;
+    BiomTable* table;
 };
