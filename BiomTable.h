@@ -1,3 +1,6 @@
+#ifndef BIOMTABLE_H
+#define BIOMTABLE_H
+
 #include <json/json-forwards.h>
 
 class QString;
@@ -19,3 +22,5 @@ class BiomTable {
   private:
     Json::Value* jsonRoot;
 };
+
+#endif

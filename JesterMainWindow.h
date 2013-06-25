@@ -11,4 +11,4 @@ class JesterMainWindow : public QMainWindow {
     ~JesterMainWindow();
 };
 
-#endif // JESTERMAINWINDOW_H
+#endif

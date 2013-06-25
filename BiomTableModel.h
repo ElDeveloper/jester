@@ -1,3 +1,6 @@
+#ifndef BIOMTABLEMODEL_H
+#define BIOMTABLEMODEL_H
+
 #include <QAbstractTableModel>
 
 class BiomTable;
@@ -27,3 +30,5 @@ class BiomTableModel : public QAbstractTableModel {
   private:
     BiomTable* table;
 };
+
+#endif
