@@ -53,6 +53,30 @@ namespace Jester {
     return (*jsonRoot)["shape"][0].asInt();
   }
 
+  QString BiomTable::sampleId(int index) const {
+    if (index >= 0 && index < sampleCount()) {
+      return QString::fromStdString(
+          (*jsonRoot)["columns"][index]["id"].asString());
+    }
+    else {
+      // TODO raise exception, make better message
+      std::cerr << "Error: invalid sample index.\n";
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  QString BiomTable::observationId(int index) const {
+    if (index >= 0 && index < observationCount()) {
+      return QString::fromStdString(
+          (*jsonRoot)["rows"][index]["id"].asString());
+    }
+    else {
+      // TODO raise exception, make better message
+      std::cerr << "Error: invalid observation index.\n";
+      exit(EXIT_FAILURE);
+    }
+  }
+
   double BiomTable::data(int row, int column) const {
     if (validIndex(row, column)) {
       return (*jsonRoot)["data"][row][column].asDouble();

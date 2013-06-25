@@ -14,6 +14,9 @@ namespace Jester {
       int sampleCount() const;
       int observationCount() const;
 
+      QString sampleId(int index) const;
+      QString observationId(int index) const;
+
       double data(int row, int column) const;
       void setData(int row, int column, double value);
 

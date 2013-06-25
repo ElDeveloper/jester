@@ -36,9 +36,9 @@ namespace Jester {
       return QVariant();
 
     if (orientation == Qt::Horizontal)
-      return QString("Column %1").arg(section + 1);
+      return table->sampleId(section);
     else
-      return QString("Row %1").arg(section + 1);
+      return table->observationId(section);
   }
 
   QVariant BiomTableModel::data(const QModelIndex& index, int role) const {
