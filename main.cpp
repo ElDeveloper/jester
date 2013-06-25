@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   window.setCentralWidget(view);
   window.show();
 
-  QString str = "dense_table.biom";
+  QString str = "examples/minimal_dense.biom";
   BiomTable table(str);
 
   return app.exec();
