@@ -3,32 +3,35 @@
 
 #include <QAbstractTableModel>
 
-class BiomTable;
 class QModelIndex;
 class QVariant;
 
-// Used the following as a starting point for this class:
-//   http://stackoverflow.com/a/11907059
-class BiomTableModel : public QAbstractTableModel {
-    Q_OBJECT
+namespace Jester {
+  class BiomTable;
 
-  public:
-    BiomTableModel(BiomTable* table);
-    virtual ~BiomTableModel();
+  // Used the following as a starting point for this class:
+  //   http://stackoverflow.com/a/11907059
+  class BiomTableModel : public QAbstractTableModel {
+      Q_OBJECT
 
-    int rowCount(const QModelIndex& parent = QModelIndex()) const;
-    int columnCount(const QModelIndex& parent = QModelIndex()) const;
+    public:
+      BiomTableModel(BiomTable* table);
+      virtual ~BiomTableModel();
 
-    Qt::ItemFlags flags(const QModelIndex& index) const;
+      int rowCount(const QModelIndex& parent = QModelIndex()) const;
+      int columnCount(const QModelIndex& parent = QModelIndex()) const;
 
-    QVariant headerData(int section, Qt::Orientation orientation,
-                        int role = Qt::DisplayRole) const;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
-    bool setData(const QModelIndex& index, const QVariant& value,
-                 int role = Qt::EditRole);
+      Qt::ItemFlags flags(const QModelIndex& index) const;
 
-  private:
-    BiomTable* table;
-};
+      QVariant headerData(int section, Qt::Orientation orientation,
+                          int role = Qt::DisplayRole) const;
+      QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+      bool setData(const QModelIndex& index, const QVariant& value,
+                   int role = Qt::EditRole);
+
+    private:
+      BiomTable* table;
+  };
+}
 
 #endif

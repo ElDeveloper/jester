@@ -5,22 +5,24 @@
 
 class QString;
 
-class BiomTable {
-  public:
-    BiomTable(const QString& fileName);
-    virtual ~BiomTable();
+namespace Jester {
+  class BiomTable {
+    public:
+      BiomTable(const QString& fileName);
+      virtual ~BiomTable();
 
-    int sampleCount() const;
-    int observationCount() const;
+      int sampleCount() const;
+      int observationCount() const;
 
-    double data(int row, int column) const;
-    void setData(int row, int column, double value);
+      double data(int row, int column) const;
+      void setData(int row, int column, double value);
 
-  private:
-    bool validIndex(int row, int column) const;
+    private:
+      bool validIndex(int row, int column) const;
 
-  private:
-    Json::Value* jsonRoot;
-};
+    private:
+      Json::Value* jsonRoot;
+  };
+}
 
 #endif

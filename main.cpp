@@ -14,12 +14,12 @@ int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
 
   QString str = "examples/minimal_dense.biom";
-  BiomTable table(str);
+  Jester::BiomTable table(str);
   std::cout << table.observationCount() << std::endl;
   std::cout << table.sampleCount() << std::endl;
 
   // Create a model which adapts the BIOM table to the view.
-  BiomTableModel model(&table);
+  Jester::BiomTableModel model(&table);
 
   QTableView* view = new QTableView;
   view->setModel(&model);
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
   //QItemDelegate delegate;
   //view->setItemDelegate(&delegate);
 
-  JesterMainWindow window;
+  Jester::JesterMainWindow window;
   window.setCentralWidget(view);
   window.show();
 

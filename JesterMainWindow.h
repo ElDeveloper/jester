@@ -3,12 +3,14 @@
 
 #include <QMainWindow>
 
-class JesterMainWindow : public QMainWindow {
-    Q_OBJECT
+namespace Jester {
+  class JesterMainWindow : public QMainWindow {
+      Q_OBJECT
 
-  public:
-    JesterMainWindow(QWidget* parent = 0);
-    ~JesterMainWindow();
-};
+    public:
+      JesterMainWindow(QWidget* parent = 0);
+      ~JesterMainWindow();
+  };
+}
 
 #endif
