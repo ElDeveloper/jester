@@ -53,6 +53,25 @@ namespace Jester {
     return (*jsonRoot)["shape"][0].asInt();
   }
 
+  BiomTable::MatrixType BiomTable::matrixType() const {
+    QString matrixTypeString = QString::fromStdString(
+        (*jsonRoot)["matrix_type"].asString());
+
+    if (matrixTypeString == "dense") {
+      return Dense;
+    }
+    else if (matrixTypeString == "sparse") {
+      return Sparse;
+    }
+    else {
+      // TODO raise exception
+      std::cerr <<
+          "Error: unrecognized matrix type '" <<
+          matrixTypeString.toStdString() << "'.\n";
+      exit(EXIT_FAILURE);
+    }
+  }
+
   QString BiomTable::sampleId(int index) const {
     if (index >= 0 && index < sampleCount()) {
       return QString::fromStdString(
@@ -78,19 +97,72 @@ namespace Jester {
   }
 
   double BiomTable::data(int row, int column) const {
+    double dataValue = -1.0;
+
     if (validIndex(row, column)) {
-      return (*jsonRoot)["data"][row][column].asDouble();
+      if (matrixType() == Dense) {
+        dataValue = (*jsonRoot)["data"][row][column].asDouble();
+      }
+      else {
+        // Extremely naive and inefficient. Just putting something in place for
+        // now...
+        bool foundEntry = false;
+        for (unsigned int i = 0;
+             !foundEntry && i < (*jsonRoot)["data"].size();
+             i++) {
+          const Json::Value nonZeroEntry = (*jsonRoot)["data"][i];
+
+          if (nonZeroEntry[0].asInt() == row &&
+              nonZeroEntry[1].asInt() == column) {
+            dataValue = nonZeroEntry[2].asDouble();
+            foundEntry = true;
+          }
+        }
+
+        if (!foundEntry) {
+          dataValue = 0.0;
+        }
+      }
     }
     else {
       // TODO raise exception, make better message
       std::cerr << "Error: invalid row or column index.\n";
       exit(EXIT_FAILURE);
     }
+
+    return dataValue;
   }
 
   void BiomTable::setData(int row, int column, double value) {
     if (validIndex(row, column)) {
-      (*jsonRoot)["data"][row][column] = value;
+      if (matrixType() == Dense) {
+        (*jsonRoot)["data"][row][column] = value;
+      }
+      else {
+        bool foundEntry = false;
+        for (unsigned int i = 0;
+             !foundEntry && i < (*jsonRoot)["data"].size();
+             i++) {
+          Json::Value nonZeroEntry = (*jsonRoot)["data"][i];
+
+          if (nonZeroEntry[0].asInt() == row &&
+              nonZeroEntry[1].asInt() == column) {
+            // TODO fix so that zeros aren't written out
+            nonZeroEntry[2] = value;
+            (*jsonRoot)["data"][i] = nonZeroEntry;
+            foundEntry = true;
+          }
+        }
+
+        if (!foundEntry) {
+          Json::Value newEntry(Json::arrayValue);
+          newEntry.resize(3);
+          newEntry[0] = row;
+          newEntry[1] = column;
+          newEntry[2] = value;
+          (*jsonRoot)["data"].append(newEntry);
+        }
+      }
     }
     else {
       // TODO raise exception, make better message, remove duplicate code

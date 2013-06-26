@@ -26,10 +26,12 @@ repository for more details.
 
 TODO:
 
-- BIOM file parser (dense and sparse)
+- add exception handling
+- fix segfault when hitting the exit button
+- ~~BIOM file parser (dense and sparse)~~
 - BIOM file writer (dense and sparse)
-- display BIOM files
-- allow editing of BIOM files
+- ~~display BIOM files~~
+- ~~allow editing of BIOM files~~
 - saving BIOM files
 - converting BIOM files (classic -> BIOM -> classic)
 - sorting

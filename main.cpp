@@ -13,7 +13,9 @@
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
 
-  QString str = "examples/minimal_dense.biom";
+  //QString str = "examples/10000x10000x0.100_bench.biom";
+  //QString str = "examples/minimal_dense.biom";
+  QString str = "examples/minimal_sparse.biom";
   Jester::BiomTable table(str);
   std::cout << table.observationCount() << std::endl;
   std::cout << table.sampleCount() << std::endl;

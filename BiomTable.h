@@ -8,11 +8,18 @@ class QString;
 namespace Jester {
   class BiomTable {
     public:
+      enum MatrixType {
+        Dense,
+        Sparse
+      };
+
+    public:
       BiomTable(const QString& fileName);
       virtual ~BiomTable();
 
       int sampleCount() const;
       int observationCount() const;
+      MatrixType matrixType() const;
 
       QString sampleId(int index) const;
       QString observationId(int index) const;
