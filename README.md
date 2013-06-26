@@ -32,6 +32,7 @@ TODO:
 - BIOM file writer (dense and sparse)
 - ~~display BIOM files~~
 - ~~allow editing of BIOM files~~
+- opening BIOM files (command line and GUI)
 - saving BIOM files
 - converting BIOM files (classic -> BIOM -> classic)
 - sorting
